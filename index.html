@@ -24,11 +24,30 @@
         /* ================== ГЛАВНЫЙ ЭКРАН ================== */
         #main-screen { display: block; animation: fadeIn 0.8s ease-out; }
         header { padding: 120px 0 80px; text-align: center; position: relative; }
-        .author-badge {
-            position: absolute; top: 30px; right: 30px; background: rgba(76, 175, 80, 0.1);
-            border: 1px solid rgba(76, 175, 80, 0.3); color: var(--primary-color); padding: 8px 16px;
-            border-radius: 30px; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; backdrop-filter: blur(10px);
+        
+        /* Блок в правом верхнем углу (Автор + Профиль) */
+        .top-right-panel {
+            position: absolute; top: 30px; right: 30px;
+            display: flex; align-items: center; gap: 15px;
         }
+
+        .author-badge {
+            background: rgba(76, 175, 80, 0.1); border: 1px solid rgba(76, 175, 80, 0.3);
+            color: var(--primary-color); padding: 8px 16px; border-radius: 30px;
+            font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; backdrop-filter: blur(10px);
+            white-space: nowrap;
+        }
+
+        /* Кнопка профиля в углу */
+        .user-widget {
+            display: flex; align-items: center; gap: 10px; background: rgba(26, 26, 36, 0.7);
+            border: 1px solid rgba(255,255,255,0.05); padding: 6px 16px 6px 6px; border-radius: 30px;
+            cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(10px); text-decoration: none; color: white;
+        }
+        .user-widget:hover { background: var(--surface-hover); border-color: var(--primary-color); transform: translateY(-2px); }
+        .user-widget img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-color); background: #000; }
+        .user-widget span { font-weight: 600; font-size: 0.9rem; }
+
         header h1 {
             font-size: 4rem; font-weight: 800; margin-bottom: 20px; background: linear-gradient(135deg, #ffffff 0%, #a0a0b0 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -1px;
@@ -127,8 +146,6 @@
         .menu-btn:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
         .menu-btn.discord:hover { background: var(--discord-color); border-color: var(--discord-color); }
         .menu-btn.telegram:hover { background: var(--telegram-color); border-color: var(--telegram-color); }
-        .menu-btn.profile { background: #2a2a40; border-color: #4caf50; margin-bottom: 10px; }
-        .menu-btn.profile:hover { background: #32324d; }
         .menu-btn.download { background: var(--primary-color); border-color: var(--primary-color); margin-top: 10px; font-weight: 800; }
         .menu-btn.download:hover { background: var(--primary-hover); }
         .back-btn { display: inline-flex; align-items: center; margin-top: 40px; color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: color 0.3s ease; }
@@ -141,22 +158,12 @@
             max-width: 440px; margin: 30px auto; background: rgba(26, 26, 36, 0.7); backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; padding: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
-        .avatar-container {
-            position: relative; width: 120px; height: 120px; margin: 0 auto 20px; cursor: pointer;
-        }
-        .avatar-img {
-            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
-            border: 3px solid var(--primary-color); background: #000; transition: opacity 0.3s ease;
-        }
+        .avatar-container { position: relative; width: 120px; height: 120px; margin: 0 auto 20px; cursor: pointer; }
+        .avatar-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-color); background: #000; transition: opacity 0.3s ease; }
         .avatar-container:hover .avatar-img { opacity: 0.5; }
-        .avatar-edit-icon {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-size: 2rem; opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
-        }
+        .avatar-edit-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
         .avatar-container:hover .avatar-edit-icon { opacity: 1; }
         .profile-card h3 { margin-bottom: 25px; font-size: 1.5rem; }
-        
-        /* Скрытый инпут для загрузки файла */
         #avatar-upload { display: none; }
 
         /* ================== ПОДВАЛ ================== */
@@ -170,7 +177,8 @@
             header h1 { font-size: 2.8rem; }
             .hero-actions { flex-direction: column; width: 100%; }
             .btn-primary, .btn-side { width: 100%; max-width: 320px; justify-content: center; }
-            .author-badge { top: 15px; right: 15px; padding: 6px 12px; font-size: 0.7rem; }
+            .top-right-panel { top: 15px; right: 15px; flex-direction: column; align-items: flex-end; gap: 10px; }
+            .author-badge { padding: 6px 12px; font-size: 0.7rem; }
             .auth-card, .profile-card { padding: 30px 20px; }
         }
     </style>
@@ -180,7 +188,16 @@
     <!-- ========== ГЛАВНЫЙ ЭКРАН ========== -->
     <div id="main-screen">
         <header>
-            <div class="author-badge">КОД АВТОРА d3noz</div>
+            <!-- ВЕРХНИЙ ПРАВЫЙ УГОЛ (Автор и Профиль) -->
+            <div class="top-right-panel">
+                <div class="author-badge">КОД АВТОРА d3noz</div>
+                <!-- Виджет профиля (показывается, если вошел) -->
+                <a href="#" class="user-widget" id="header-profile-btn" style="display: none;" onclick="showProfile(); return false;">
+                    <img src="" alt="Аватар" id="header-avatar">
+                    <span id="header-nickname">Никнейм</span>
+                </a>
+            </div>
+
             <div class="container">
                 <h1>Millida Launcher</h1>
                 <p>Бесплатный лаунчер для Minecraft с модами, сборками и встроенным ИИ-помощником.</p>
@@ -256,14 +273,11 @@
             <h2>Добро пожаловать!</h2>
             <p class="subtitle">Выберите, куда хотите перейти:</p>
             <div class="menu-buttons">
-                <!-- Кнопка профиля -->
-                <a href="#" class="menu-btn profile" onclick="showProfile(); return false;">
-                    👤 Мой профиль
-                </a>
                 <a href="https://discord.gg/srZE2xaw8" class="menu-btn discord" target="_blank" rel="noopener">🎮 Наш Discord-сервер</a>
                 <a href="https://t.me/brotherslor" class="menu-btn telegram" target="_blank" rel="noopener">✈️ Наш Telegram-канал</a>
                 <a href="https://millida.net/launcher" class="menu-btn download" target="_blank" rel="noopener">⬇️ Скачать Millida Launcher</a>
             </div>
+            <a href="#" class="back-btn" onclick="showMain(); return false;">← Вернуться на главную</a>
             <br>
             <a href="#" class="back-btn logout-btn" onclick="handleLogout(event); return false;">Выйти из аккаунта</a>
         </div>
@@ -276,7 +290,6 @@
             <p class="subtitle">Здесь вы можете изменить свои данные</p>
             
             <div class="profile-card">
-                <!-- Аватарка -->
                 <div class="avatar-container" onclick="document.getElementById('avatar-upload').click()">
                     <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Аватар" class="avatar-img" id="profile-avatar">
                     <div class="avatar-edit-icon">✏️</div>
@@ -292,7 +305,10 @@
                 <div class="auth-message" id="profile-message"></div>
             </div>
             
+            <!-- ИСПРАВЛЕНО: Кнопки возврата -->
             <a href="#" class="back-btn" onclick="showMenu(); return false;">← Вернуться в лобби</a>
+            <br>
+            <a href="#" class="back-btn" onclick="showMain(); return false;">← Вернуться на главную</a>
         </div>
     </div>
 
@@ -301,14 +317,24 @@
         let currentUser = JSON.parse(localStorage.getItem('millida_user')) || null;
         let registeredUsersCount = parseInt(localStorage.getItem('millida_users_count')) || 1;
 
-        // Функция форматирования счетчика
         document.getElementById('visit-count').innerText = registeredUsersCount;
+
+        // Функция обновления виджета профиля в шапке
+        function updateHeaderProfile() {
+            const profileBtn = document.getElementById('header-profile-btn');
+            if (currentUser) {
+                profileBtn.style.display = 'flex';
+                document.getElementById('header-nickname').innerText = currentUser.nickname || 'Игрок';
+                document.getElementById('header-avatar').src = currentUser.avatar || "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+            } else {
+                profileBtn.style.display = 'none';
+            }
+        }
 
         // При загрузке проверяем, авторизован ли пользователь
         window.addEventListener('DOMContentLoaded', () => {
-            if (currentUser) {
-                showMenu(); // Если уже вошел, показываем лобби
-            }
+            updateHeaderProfile();
+            if (currentUser) showMenu(); // Если уже вошел, показываем лобби
         });
 
         // ===== НАВИГАЦИЯ =====
@@ -326,27 +352,32 @@
         }
 
         function showAuth() {
+            if (currentUser) {
+                showMenu(); // Если уже вошел, не показываем авторизацию, а кидаем в лобби
+                return;
+            }
             hideAllScreens();
             document.getElementById('auth-screen').style.display = 'block';
             window.scrollTo(0, 0);
         }
 
         function showMenu() {
+            if (!currentUser) {
+                showAuth(); // Если не вошел, кидаем на авторизацию
+                return;
+            }
             hideAllScreens();
             document.getElementById('menu-screen').style.display = 'block';
             window.scrollTo(0, 0);
         }
 
         function showProfile() {
+            if (!currentUser) return;
             hideAllScreens();
             document.getElementById('profile-screen').style.display = 'block';
             // Заполняем форму текущими данными
-            if (currentUser) {
-                document.getElementById('profile-nickname').value = currentUser.nickname || '';
-                if (currentUser.avatar) {
-                    document.getElementById('profile-avatar').src = currentUser.avatar;
-                }
-            }
+            document.getElementById('profile-nickname').value = currentUser.nickname || '';
+            document.getElementById('profile-avatar').src = currentUser.avatar || "https://cdn-icons-png.flaticon.com/512/149/149071.png";
             window.scrollTo(0, 0);
         }
 
@@ -382,15 +413,14 @@
             if (password !== password2) return setAuthMessage('Пароли не совпадают.', 'error');
             if (password.length < 6) return setAuthMessage('Пароль должен быть не менее 6 символов.', 'error');
 
-            // Сохраняем пользователя (имитация)
             currentUser = { email: email, nickname: email.split('@')[0], avatar: '' };
             localStorage.setItem('millida_user', JSON.stringify(currentUser));
             
-            // Увеличиваем счетчик (только если это новый аккаунт)
             registeredUsersCount++;
             localStorage.setItem('millida_users_count', registeredUsersCount);
             document.getElementById('visit-count').innerText = registeredUsersCount;
 
+            updateHeaderProfile();
             setAuthMessage('Успешно! Входим...', 'success');
             setTimeout(showMenu, 800);
         }
@@ -402,19 +432,19 @@
 
             if (!email || !password) return setAuthMessage('Заполните все поля.', 'error');
             
-            // Локальная имитация входа
             currentUser = { email: email, nickname: email.split('@')[0], avatar: '' };
             localStorage.setItem('millida_user', JSON.stringify(currentUser));
 
+            updateHeaderProfile();
             setAuthMessage('Успешно!', 'success');
             setTimeout(showMenu, 600);
         }
 
         function handleGoogleAuth() {
-            // Имитация входа через Google
             currentUser = { email: 'user@gmail.com', nickname: 'GoogleUser', avatar: '' };
             localStorage.setItem('millida_user', JSON.stringify(currentUser));
             
+            updateHeaderProfile();
             setAuthMessage('Вход через Google выполнен...', 'success');
             setTimeout(showMenu, 800);
         }
@@ -423,6 +453,7 @@
             event.preventDefault();
             currentUser = null;
             localStorage.removeItem('millida_user');
+            updateHeaderProfile();
             showMain();
         }
 
@@ -435,13 +466,13 @@
                     const avatarData = e.target.result;
                     document.getElementById('profile-avatar').src = avatarData;
                     
-                    // Сохраняем аватарку в текущего пользователя
                     if (currentUser) {
                         currentUser.avatar = avatarData;
                         localStorage.setItem('millida_user', JSON.stringify(currentUser));
+                        updateHeaderProfile(); // Обновляем аватарку в углу
                     }
                 };
-                reader.readAsDataURL(file); // Конвертируем в Base64 для хранения
+                reader.readAsDataURL(file);
             }
         }
 
@@ -459,6 +490,7 @@
             if (currentUser) {
                 currentUser.nickname = newNickname;
                 localStorage.setItem('millida_user', JSON.stringify(currentUser));
+                updateHeaderProfile(); // Обновляем ник в углу
                 
                 message.textContent = 'Профиль успешно обновлен!';
                 message.className = 'auth-message success';
