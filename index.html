@@ -7,479 +7,171 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f0f13;
-            --surface-color: #1a1a24;
-            --surface-hover: #232333;
-            --primary-color: #4caf50;
-            --primary-hover: #66bb6a;
-            --text-main: #ffffff;
-            --text-muted: #8b8b9e;
-            --discord-color: #5865F2;
-            --telegram-color: #2AABEE;
+            --bg-color: #0f0f13; --surface-color: #1a1a24; --surface-hover: #232333;
+            --primary-color: #4caf50; --primary-hover: #66bb6a;
+            --text-main: #ffffff; --text-muted: #8b8b9e;
+            --discord-color: #5865F2; --telegram-color: #2AABEE; --danger-color: #ff5252;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            /* Красивый фоновый градиент */
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(76, 175, 80, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(88, 101, 242, 0.08) 0%, transparent 50%);
+            background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden;
+            background-image: radial-gradient(circle at 15% 50%, rgba(76, 175, 80, 0.08) 0%, transparent 50%),
+                              radial-gradient(circle at 85% 30%, rgba(88, 101, 242, 0.08) 0%, transparent 50%);
             background-attachment: fixed;
         }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        
         /* ================== ГЛАВНЫЙ ЭКРАН ================== */
-        #main-screen {
-            display: block;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        header {
-            padding: 120px 0 80px;
-            text-align: center;
-            position: relative;
-        }
-
+        #main-screen { display: block; animation: fadeIn 0.8s ease-out; }
+        header { padding: 120px 0 80px; text-align: center; position: relative; }
         .author-badge {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            background: rgba(76, 175, 80, 0.1);
-            border: 1px solid rgba(76, 175, 80, 0.3);
-            color: var(--primary-color);
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(76, 175, 80, 0.1);
+            position: absolute; top: 30px; right: 30px; background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3); color: var(--primary-color); padding: 8px 16px;
+            border-radius: 30px; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; backdrop-filter: blur(10px);
         }
-
         header h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #a0a0b0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
+            font-size: 4rem; font-weight: 800; margin-bottom: 20px; background: linear-gradient(135deg, #ffffff 0%, #a0a0b0 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -1px;
         }
-
-        header p {
-            font-size: 1.2rem;
-            max-width: 650px;
-            margin: 0 auto 40px;
-            color: var(--text-muted);
-        }
-
-        .hero-actions {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        /* Улучшенные кнопки */
+        header p { font-size: 1.2rem; max-width: 650px; margin: 0 auto 40px; color: var(--text-muted); }
+        .hero-actions { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .download-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; }
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), #388e3c);
-            color: white;
-            padding: 18px 45px;
-            border-radius: 12px;
-            font-weight: 800;
-            font-size: 1.1rem;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--primary-color), #388e3c); color: white; padding: 18px 45px;
+            border-radius: 12px; font-weight: 800; font-size: 1.1rem; border: none; cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+            text-transform: uppercase; letter-spacing: 1px;
         }
-
-        .btn-primary:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(76, 175, 80, 0.5);
+        .btn-primary:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 15px 40px rgba(76, 175, 80, 0.5); }
+        .user-counter {
+            font-size: 0.85rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px;
+            background: rgba(255, 255, 255, 0.03); padding: 4px 12px; border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; gap: 6px;
         }
-
+        .user-counter span { color: var(--primary-color); font-weight: 800; }
         .btn-side {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 16px 25px;
-            border-radius: 12px;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: var(--surface-color);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex; align-items: center; gap: 10px; padding: 16px 25px; border-radius: 12px;
+            color: white; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s ease;
+            background: var(--surface-color); border: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        .btn-side:hover {
-            background: var(--surface-hover);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
+        .btn-side:hover { background: var(--surface-hover); transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
         .btn-side.discord:hover { border-color: rgba(88, 101, 242, 0.5); box-shadow: 0 0 20px rgba(88, 101, 242, 0.2); }
         .btn-side.telegram:hover { border-color: rgba(42, 171, 238, 0.5); box-shadow: 0 0 20px rgba(42, 171, 238, 0.2); }
 
         /* ================== ОСОБЕННОСТИ ================== */
-        .features {
-            padding: 80px 0;
-        }
-
-        .features h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            font-weight: 800;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-        }
-
+        .features { padding: 80px 0; }
+        .features h2 { text-align: center; font-size: 2.5rem; margin-bottom: 50px; font-weight: 800; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
         .feature-card {
-            background: var(--surface-color);
-            padding: 35px 30px;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.03);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+            background: var(--surface-color); padding: 35px 30px; border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.03); transition: all 0.4s ease; position: relative; overflow: hidden;
         }
-
         .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background: var(--primary-color);
-            opacity: 0.8;
-            transition: all 0.4s ease;
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--primary-color); opacity: 0.8; transition: all 0.4s ease;
         }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            background: var(--surface-hover);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border-color: rgba(76, 175, 80, 0.3);
-        }
-
-        .feature-card:hover::before {
-            height: 100%;
-            box-shadow: 0 0 15px var(--primary-color);
-        }
-
-        .feature-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            color: var(--primary-hover);
-        }
-
-        .feature-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
+        .feature-card:hover { transform: translateY(-8px); background: var(--surface-hover); box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-color: rgba(76, 175, 80, 0.3); }
+        .feature-card:hover::before { height: 100%; box-shadow: 0 0 15px var(--primary-color); }
+        .feature-card h3 { margin-bottom: 15px; font-size: 1.3rem; color: var(--primary-hover); }
+        .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
 
         /* ================== ЭКРАН АВТОРИЗАЦИИ ================== */
-        #auth-screen {
-            display: none;
-            min-height: 100vh;
-            padding: 80px 0;
-            text-align: center;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        #auth-screen h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-
+        #auth-screen { display: none; min-height: 100vh; padding: 80px 0; text-align: center; animation: fadeIn 0.5s ease-out; }
+        #auth-screen h2 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
         .auth-card {
-            max-width: 440px;
-            margin: 30px auto;
-            background: rgba(26, 26, 36, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 24px;
-            padding: 40px;
-            text-align: left;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            max-width: 440px; margin: 30px auto; background: rgba(26, 26, 36, 0.7); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; padding: 40px; text-align: left; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
-
-        .auth-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            background: #0f0f13;
-            padding: 6px;
-            border-radius: 12px;
-        }
-
+        .auth-tabs { display: flex; gap: 10px; margin-bottom: 30px; background: #0f0f13; padding: 6px; border-radius: 12px; }
         .auth-tab {
-            flex: 1;
-            padding: 12px;
-            border-radius: 8px;
-            border: none;
-            background: transparent;
-            color: var(--text-muted);
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            flex: 1; padding: 12px; border-radius: 8px; border: none; background: transparent; color: var(--text-muted);
+            font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;
         }
-
-        .auth-tab.active {
-            background: var(--surface-hover);
-            color: var(--text-main);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
+        .auth-tab.active { background: var(--surface-hover); color: var(--text-main); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
         .auth-form { display: none; }
         .auth-form.active { display: block; animation: fadeIn 0.3s ease-out; }
-
-        .auth-form label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
+        .auth-form label { display: block; margin-bottom: 8px; font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
         .auth-form input {
-            width: 100%;
-            padding: 14px 16px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(0,0,0,0.3);
-            color: var(--text-main);
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s ease;
+            width: 100%; padding: 14px 16px; margin-bottom: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.3); color: var(--text-main); font-size: 1rem; outline: none; transition: all 0.3s ease;
         }
-
-        .auth-form input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
-        }
-
+        .auth-form input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15); }
         .auth-submit {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 10px;
-            background: var(--primary-color);
-            color: #fff;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            width: 100%; padding: 16px; border: none; border-radius: 10px; background: var(--primary-color); color: #fff;
+            font-weight: 800; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;
         }
-
-        .auth-submit:hover {
-            background: var(--primary-hover);
-            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
-        }
-
-        .auth-divider {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 25px 0;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .auth-divider::before, .auth-divider::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: rgba(255,255,255,0.1);
-        }
-
+        .auth-submit:hover { background: var(--primary-hover); box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3); }
+        .auth-divider { display: flex; align-items: center; gap: 15px; margin: 25px 0; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; }
+        .auth-divider::before, .auth-divider::after { content: ""; flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
         .google-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: #ffffff;
-            color: #1f1f1f;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 14px;
+            border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: #ffffff; color: #1f1f1f;
+            font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease;
         }
-
-        .google-btn:hover {
-            transform: translateY(-2px);
-            background: #f0f0f0;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .auth-message {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            text-align: center;
-            min-height: 22px;
-            font-weight: 600;
-        }
-
-        .auth-message.error { color: #ff5252; }
+        .google-btn:hover { transform: translateY(-2px); background: #f0f0f0; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .auth-message { margin-top: 20px; font-size: 0.9rem; text-align: center; min-height: 22px; font-weight: 600; }
+        .auth-message.error { color: var(--danger-color); }
         .auth-message.success { color: var(--primary-color); }
 
-        /* ================== МЕНЮ (ЛОББИ) ================== */
-        #menu-screen {
-            display: none;
-            min-height: 100vh;
-            padding: 80px 0;
-            text-align: center;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        #menu-screen h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-
-        #menu-screen .subtitle {
-            color: var(--text-muted);
-            margin-bottom: 50px;
-            font-size: 1.1rem;
-        }
-
-        .menu-buttons {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
+        /* ================== ЛОББИ ================== */
+        #menu-screen { display: none; min-height: 100vh; padding: 80px 0; text-align: center; animation: fadeIn 0.5s ease-out; }
+        #menu-screen h2 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
+        #menu-screen .subtitle { color: var(--text-muted); margin-bottom: 50px; font-size: 1.1rem; }
+        .menu-buttons { display: flex; flex-direction: column; align-items: center; gap: 15px; max-width: 500px; margin: 0 auto; }
         .menu-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 18px 25px;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.05rem;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            color: #fff;
-            background: var(--surface-color);
-            border: 1px solid rgba(255,255,255,0.05);
+            display: flex; align-items: center; justify-content: center; width: 100%; padding: 18px 25px;
+            text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 1.05rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); color: #fff;
+            background: var(--surface-color); border: 1px solid rgba(255,255,255,0.05);
         }
-
-        .menu-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        }
-
+        .menu-btn:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
         .menu-btn.discord:hover { background: var(--discord-color); border-color: var(--discord-color); }
         .menu-btn.telegram:hover { background: var(--telegram-color); border-color: var(--telegram-color); }
-        .menu-btn.download {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
-            margin-top: 10px;
-            font-weight: 800;
-        }
+        .menu-btn.profile { background: #2a2a40; border-color: #4caf50; margin-bottom: 10px; }
+        .menu-btn.profile:hover { background: #32324d; }
+        .menu-btn.download { background: var(--primary-color); border-color: var(--primary-color); margin-top: 10px; font-weight: 800; }
         .menu-btn.download:hover { background: var(--primary-hover); }
+        .back-btn { display: inline-flex; align-items: center; margin-top: 40px; color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 600; transition: color 0.3s ease; }
+        .back-btn:hover { color: var(--primary-color); }
+        .logout-btn { color: var(--danger-color); margin-top: 20px; border-bottom: 1px dashed var(--danger-color); }
 
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            margin-top: 40px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: color 0.3s ease;
+        /* ================== ПРОФИЛЬ ================== */
+        #profile-screen { display: none; min-height: 100vh; padding: 80px 0; text-align: center; animation: fadeIn 0.5s ease-out; }
+        .profile-card {
+            max-width: 440px; margin: 30px auto; background: rgba(26, 26, 36, 0.7); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; padding: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
-
-        .back-btn:hover {
-            color: var(--primary-color);
+        .avatar-container {
+            position: relative; width: 120px; height: 120px; margin: 0 auto 20px; cursor: pointer;
         }
+        .avatar-img {
+            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--primary-color); background: #000; transition: opacity 0.3s ease;
+        }
+        .avatar-container:hover .avatar-img { opacity: 0.5; }
+        .avatar-edit-icon {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 2rem; opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
+        }
+        .avatar-container:hover .avatar-edit-icon { opacity: 1; }
+        .profile-card h3 { margin-bottom: 25px; font-size: 1.5rem; }
+        
+        /* Скрытый инпут для загрузки файла */
+        #avatar-upload { display: none; }
 
         /* ================== ПОДВАЛ ================== */
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            margin-top: 80px;
-            background: #0a0a0e;
-        }
+        footer { text-align: center; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 80px; background: #0a0a0e; }
+        .author-line { margin-bottom: 20px; color: var(--primary-color); font-weight: 800; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; }
+        footer p { color: #555566; font-size: 0.85rem; margin-bottom: 5px; }
 
-        .author-line {
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            font-weight: 800;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        footer p {
-            color: #555566;
-            font-size: 0.85rem;
-            margin-bottom: 5px;
-        }
-
-        /* Анимации */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Адаптивность */
         @media (max-width: 768px) {
             header h1 { font-size: 2.8rem; }
-            .hero-actions {
-                flex-direction: column;
-                width: 100%;
-            }
-            .btn-primary, .btn-side {
-                width: 100%;
-                max-width: 320px;
-                justify-content: center;
-            }
-            .author-badge {
-                top: 15px; right: 15px; padding: 6px 12px; font-size: 0.7rem;
-            }
-            .auth-card { padding: 30px 20px; }
+            .hero-actions { flex-direction: column; width: 100%; }
+            .btn-primary, .btn-side { width: 100%; max-width: 320px; justify-content: center; }
+            .author-badge { top: 15px; right: 15px; padding: 6px 12px; font-size: 0.7rem; }
+            .auth-card, .profile-card { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -491,50 +183,33 @@
             <div class="author-badge">КОД АВТОРА d3noz</div>
             <div class="container">
                 <h1>Millida Launcher</h1>
-                <p>Бесплатный лаунчер для Minecraft с модами, сборками и встроенным ИИ-помощником. Играй с друзьями без лишних сложностей.</p>
+                <p>Бесплатный лаунчер для Minecraft с модами, сборками и встроенным ИИ-помощником.</p>
                 
-                <!-- Кнопки: Discord - Скачать - Бот -->
                 <div class="hero-actions">
-                    <a href="https://discord.gg/aR7KruWnX" class="btn-side discord" target="_blank" rel="noopener">
-                        🎮 Discord Millida
-                    </a>
-                    <button class="btn-primary" onclick="showAuth()">Скачать бесплатно</button>
-                    <a href="https://t.me/MillidaServiceBot" class="btn-side telegram" target="_blank" rel="noopener">
-                        🤖 Бот Millida
-                    </a>
+                    <a href="https://discord.gg/aR7KruWnX" class="btn-side discord" target="_blank" rel="noopener">🎮 Discord Millida</a>
+                    <div class="download-wrapper">
+                        <button class="btn-primary" onclick="showAuth()">Скачать бесплатно</button>
+                        <div class="user-counter">👥 Аккаунтов: <span id="visit-count">1</span></div>
+                    </div>
+                    <a href="https://t.me/MillidaServiceBot" class="btn-side telegram" target="_blank" rel="noopener">🤖 Бот Millida</a>
                 </div>
             </div>
         </header>
-
         <section class="features">
             <div class="container">
                 <h2>Почему выбирают Millida?</h2>
                 <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>Всё в один клик</h3>
-                        <p>Установка модов, сборок и шейдеров из Modrinth и CurseForge прямо в лаунчере. Не нужно ничего искать вручную.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>ИИ-Помощник Milli</h3>
-                        <p>Опиши, какую игру хочешь, и Milli соберет для тебя модпак или поможет исправить ошибки при запуске.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Друзья и Голос</h3>
-                        <p>Встроенный чат, звонки и голосовой чат прямо в лаунчере. Видно, кто из друзей и на каком сервере играет.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Полностью бесплатно</h3>
-                        <p>Сам лаунчер, игра и моды бесплатны. Платить нужно только за косметику (плащи, питомцы), если захочется.</p>
-                    </div>
+                    <div class="feature-card"><h3>Всё в один клик</h3><p>Установка модов, сборок и шейдеров прямо в лаунчере.</p></div>
+                    <div class="feature-card"><h3>ИИ-Помощник Milli</h3><p>Опиши, какую игру хочешь, и Milli соберет для тебя модпак.</p></div>
+                    <div class="feature-card"><h3>Друзья и Голос</h3><p>Встроенный чат, звонки и голосовой чат прямо в лаунчере.</p></div>
+                    <div class="feature-card"><h3>Полностью бесплатно</h3><p>Сам лаунчер, игра и моды бесплатны.</p></div>
                 </div>
             </div>
         </section>
-
         <footer>
             <div class="container">
                 <div class="author-line">КОД АВТОРА d3noz</div>
-                <p>Этот сайт является неофициальной информационной страницей. Официальный сайт: millida.net</p>
-                <p>Minecraft является торговой маркой Mojang AB. Millida Launcher не связан с Mojang или Microsoft.</p>
+                <p>Этот сайт является неофициальной информационной страницей.</p>
             </div>
         </footer>
     </div>
@@ -543,103 +218,105 @@
     <div id="auth-screen">
         <div class="container">
             <h2>Вход в Millida</h2>
-            <p class="subtitle">Войдите или создайте аккаунт, чтобы продолжить</p>
-
+            <p class="subtitle">Войдите или создайте аккаунт</p>
             <div class="auth-card">
                 <div class="auth-tabs">
                     <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Вход</button>
                     <button class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">Регистрация</button>
                 </div>
-
-                <!-- Форма входа -->
                 <form class="auth-form active" id="form-login" onsubmit="handleLogin(event)">
-                    <label for="login-username">Логин или Email</label>
-                    <input type="text" id="login-username" placeholder="Введите логин или email" required>
-
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="Введите ваш email" required>
                     <label for="login-password">Пароль</label>
                     <input type="password" id="login-password" placeholder="Введите пароль" required>
-
                     <button type="submit" class="auth-submit">Войти</button>
-
                     <div class="auth-divider">или</div>
-
-                    <button type="button" class="google-btn" onclick="handleGoogleAuth()">
-                        <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true">
-                            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-                            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-                            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-                        </svg>
-                        Войти через Google
-                    </button>
+                    <button type="button" class="google-btn" onclick="handleGoogleAuth()">Войти через Google</button>
                 </form>
-
-                <!-- Форма регистрации -->
                 <form class="auth-form" id="form-register" onsubmit="handleRegister(event)">
-                    <label for="reg-username">Логин</label>
-                    <input type="text" id="reg-username" placeholder="Придумайте логин" required>
-
                     <label for="reg-email">Email</label>
-                    <input type="email" id="reg-email" placeholder="Введите email" required>
-
+                    <input type="email" id="reg-email" placeholder="Введите ваш email" required>
                     <label for="reg-password">Пароль</label>
-                    <input type="password" id="reg-password" placeholder="Придумайте пароль" required>
-
+                    <input type="password" id="reg-password" placeholder="Придумайте пароль (мин. 6 символов)" required>
                     <label for="reg-password2">Повторите пароль</label>
                     <input type="password" id="reg-password2" placeholder="Повторите пароль" required>
-
                     <button type="submit" class="auth-submit">Зарегистрироваться</button>
-
                     <div class="auth-divider">или</div>
-
-                    <button type="button" class="google-btn" onclick="handleGoogleAuth()">
-                        <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true">
-                            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-                            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-                            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-                        </svg>
-                        Зарегистрироваться через Google
-                    </button>
+                    <button type="button" class="google-btn" onclick="handleGoogleAuth()">Регистрация через Google</button>
                 </form>
-
                 <div class="auth-message" id="auth-message"></div>
             </div>
-
             <a href="#" class="back-btn" onclick="showMain(); return false;">← Вернуться на главную</a>
         </div>
     </div>
 
-    <!-- ========== ЭКРАН С КНОПКАМИ (ЛОББИ) ========== -->
+    <!-- ========== ЭКРАН ЛОББИ ========== -->
     <div id="menu-screen">
         <div class="container">
-            <h2>Добро пожаловать в лобби</h2>
+            <h2>Добро пожаловать!</h2>
             <p class="subtitle">Выберите, куда хотите перейти:</p>
-
             <div class="menu-buttons">
-                <a href="https://discord.gg/srZE2xaw8" class="menu-btn discord" target="_blank" rel="noopener">
-                    🎮 Наш Discord-сервер
+                <!-- Кнопка профиля -->
+                <a href="#" class="menu-btn profile" onclick="showProfile(); return false;">
+                    👤 Мой профиль
                 </a>
-
-                <a href="https://t.me/brotherslor" class="menu-btn telegram" target="_blank" rel="noopener">
-                    ✈️ Наш Telegram-канал
-                </a>
-
-                <a href="https://millida.net/launcher" class="menu-btn download" target="_blank" rel="noopener">
-                    ⬇️ Скачать Millida Launcher
-                </a>
+                <a href="https://discord.gg/srZE2xaw8" class="menu-btn discord" target="_blank" rel="noopener">🎮 Наш Discord-сервер</a>
+                <a href="https://t.me/brotherslor" class="menu-btn telegram" target="_blank" rel="noopener">✈️ Наш Telegram-канал</a>
+                <a href="https://millida.net/launcher" class="menu-btn download" target="_blank" rel="noopener">⬇️ Скачать Millida Launcher</a>
             </div>
+            <br>
+            <a href="#" class="back-btn logout-btn" onclick="handleLogout(event); return false;">Выйти из аккаунта</a>
+        </div>
+    </div>
 
-            <a href="#" class="back-btn" onclick="showMain(); return false;">← Вернуться на главную</a>
+    <!-- ========== ЭКРАН ПРОФИЛЯ ========== -->
+    <div id="profile-screen">
+        <div class="container">
+            <h2>Мой профиль</h2>
+            <p class="subtitle">Здесь вы можете изменить свои данные</p>
+            
+            <div class="profile-card">
+                <!-- Аватарка -->
+                <div class="avatar-container" onclick="document.getElementById('avatar-upload').click()">
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Аватар" class="avatar-img" id="profile-avatar">
+                    <div class="avatar-edit-icon">✏️</div>
+                </div>
+                <input type="file" id="avatar-upload" accept="image/*" onchange="handleAvatarUpload(event)">
+                <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 20px;">Нажмите на аватарку, чтобы изменить</p>
+
+                <form onsubmit="handleProfileSave(event)">
+                    <label for="profile-nickname">Ваш Никнейм</label>
+                    <input type="text" id="profile-nickname" placeholder="Введите ваш ник" required>
+                    <button type="submit" class="auth-submit">Сохранить</button>
+                </form>
+                <div class="auth-message" id="profile-message"></div>
+            </div>
+            
+            <a href="#" class="back-btn" onclick="showMenu(); return false;">← Вернуться в лобби</a>
         </div>
     </div>
 
     <script>
-        // ===== Навигация между экранами =====
+        // ===== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ И ХРАНИЛИЩЕ =====
+        let currentUser = JSON.parse(localStorage.getItem('millida_user')) || null;
+        let registeredUsersCount = parseInt(localStorage.getItem('millida_users_count')) || 1;
+
+        // Функция форматирования счетчика
+        document.getElementById('visit-count').innerText = registeredUsersCount;
+
+        // При загрузке проверяем, авторизован ли пользователь
+        window.addEventListener('DOMContentLoaded', () => {
+            if (currentUser) {
+                showMenu(); // Если уже вошел, показываем лобби
+            }
+        });
+
+        // ===== НАВИГАЦИЯ =====
         function hideAllScreens() {
             document.getElementById('main-screen').style.display = 'none';
             document.getElementById('auth-screen').style.display = 'none';
             document.getElementById('menu-screen').style.display = 'none';
+            document.getElementById('profile-screen').style.display = 'none';
         }
 
         function showMain() {
@@ -660,85 +337,134 @@
             window.scrollTo(0, 0);
         }
 
-        // ===== Переключение вкладок Вход / Регистрация =====
+        function showProfile() {
+            hideAllScreens();
+            document.getElementById('profile-screen').style.display = 'block';
+            // Заполняем форму текущими данными
+            if (currentUser) {
+                document.getElementById('profile-nickname').value = currentUser.nickname || '';
+                if (currentUser.avatar) {
+                    document.getElementById('profile-avatar').src = currentUser.avatar;
+                }
+            }
+            window.scrollTo(0, 0);
+        }
+
+        // ===== АВТОРИЗАЦИЯ =====
         function switchAuthTab(tab) {
             const loginTab = document.getElementById('tab-login');
             const registerTab = document.getElementById('tab-register');
             const loginForm = document.getElementById('form-login');
             const registerForm = document.getElementById('form-register');
-            const message = document.getElementById('auth-message');
-
-            message.textContent = '';
-            message.className = 'auth-message';
-
+            document.getElementById('auth-message').textContent = '';
+            
             if (tab === 'login') {
-                loginTab.classList.add('active');
-                registerTab.classList.remove('active');
-                loginForm.classList.add('active');
-                registerForm.classList.remove('active');
+                loginTab.classList.add('active'); registerTab.classList.remove('active');
+                loginForm.classList.add('active'); registerForm.classList.remove('active');
             } else {
-                registerTab.classList.add('active');
-                loginTab.classList.remove('active');
-                registerForm.classList.add('active');
-                loginForm.classList.remove('active');
+                registerTab.classList.add('active'); loginTab.classList.remove('active');
+                registerForm.classList.add('active'); loginForm.classList.remove('active');
             }
         }
 
-        // ===== Вспомогательные функции сообщений =====
         function setAuthMessage(text, type) {
             const message = document.getElementById('auth-message');
             message.textContent = text;
-            message.className = 'auth-message' + (type ? ' ' + type : '');
+            message.className = 'auth-message ' + (type || '');
         }
 
-        // ===== Вход по логину/паролю =====
-        function handleLogin(event) {
-            event.preventDefault();
-            const username = document.getElementById('login-username').value.trim();
-            const password = document.getElementById('login-password').value;
-
-            if (!username || !password) {
-                setAuthMessage('Заполните все поля.', 'error');
-                return;
-            }
-
-            setAuthMessage('Вход выполнен. Переход в лобби...', 'success');
-            setTimeout(showMenu, 600);
-        }
-
-        // ===== Регистрация =====
         function handleRegister(event) {
             event.preventDefault();
-            const username = document.getElementById('reg-username').value.trim();
             const email = document.getElementById('reg-email').value.trim();
             const password = document.getElementById('reg-password').value;
             const password2 = document.getElementById('reg-password2').value;
 
-            if (!username || !email || !password || !password2) {
-                setAuthMessage('Заполните все поля.', 'error');
-                return;
-            }
+            if (password !== password2) return setAuthMessage('Пароли не совпадают.', 'error');
+            if (password.length < 6) return setAuthMessage('Пароль должен быть не менее 6 символов.', 'error');
 
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                setAuthMessage('Введите корректный email.', 'error');
-                return;
-            }
+            // Сохраняем пользователя (имитация)
+            currentUser = { email: email, nickname: email.split('@')[0], avatar: '' };
+            localStorage.setItem('millida_user', JSON.stringify(currentUser));
+            
+            // Увеличиваем счетчик (только если это новый аккаунт)
+            registeredUsersCount++;
+            localStorage.setItem('millida_users_count', registeredUsersCount);
+            document.getElementById('visit-count').innerText = registeredUsersCount;
 
-            if (password !== password2) {
-                setAuthMessage('Пароли не совпадают.', 'error');
-                return;
-            }
+            setAuthMessage('Успешно! Входим...', 'success');
+            setTimeout(showMenu, 800);
+        }
 
-            setAuthMessage('Регистрация выполнена. Переход в лобби...', 'success');
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+
+            if (!email || !password) return setAuthMessage('Заполните все поля.', 'error');
+            
+            // Локальная имитация входа
+            currentUser = { email: email, nickname: email.split('@')[0], avatar: '' };
+            localStorage.setItem('millida_user', JSON.stringify(currentUser));
+
+            setAuthMessage('Успешно!', 'success');
             setTimeout(showMenu, 600);
         }
 
-        // ===== Вход через Google =====
         function handleGoogleAuth() {
-            setAuthMessage('Перенаправление в Google...', 'success');
-            setTimeout(showMenu, 600);
+            // Имитация входа через Google
+            currentUser = { email: 'user@gmail.com', nickname: 'GoogleUser', avatar: '' };
+            localStorage.setItem('millida_user', JSON.stringify(currentUser));
+            
+            setAuthMessage('Вход через Google выполнен...', 'success');
+            setTimeout(showMenu, 800);
+        }
+
+        function handleLogout(event) {
+            event.preventDefault();
+            currentUser = null;
+            localStorage.removeItem('millida_user');
+            showMain();
+        }
+
+        // ===== ПРОФИЛЬ =====
+        function handleAvatarUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const avatarData = e.target.result;
+                    document.getElementById('profile-avatar').src = avatarData;
+                    
+                    // Сохраняем аватарку в текущего пользователя
+                    if (currentUser) {
+                        currentUser.avatar = avatarData;
+                        localStorage.setItem('millida_user', JSON.stringify(currentUser));
+                    }
+                };
+                reader.readAsDataURL(file); // Конвертируем в Base64 для хранения
+            }
+        }
+
+        function handleProfileSave(event) {
+            event.preventDefault();
+            const newNickname = document.getElementById('profile-nickname').value.trim();
+            const message = document.getElementById('profile-message');
+
+            if (!newNickname) {
+                message.textContent = 'Никнейм не может быть пустым.';
+                message.className = 'auth-message error';
+                return;
+            }
+
+            if (currentUser) {
+                currentUser.nickname = newNickname;
+                localStorage.setItem('millida_user', JSON.stringify(currentUser));
+                
+                message.textContent = 'Профиль успешно обновлен!';
+                message.className = 'auth-message success';
+                setTimeout(() => { message.textContent = ''; }, 2000);
+            }
         }
     </script>
-
 </body>
 </html>
